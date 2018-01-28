@@ -1,4 +1,5 @@
 <?php
+
 namespace EshopBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -14,8 +15,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author kmento
  * @ORM\Entity()
+ * 
  */
-class Product {
+class Discount {
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -24,14 +26,9 @@ class Product {
     private $id;
     
     /**
-     * @ORM\Column(type="string",length=128, nullable=true)
+     * @ORM\Column(type="string", length=32)
      */
     private $name;
-    
-    /**
-     *  @ORM\Column(type="string", length=128, unique=true)
-     */
-    private $url;
     
     /**
      * @ORM\Column(type="text")
@@ -41,42 +38,42 @@ class Product {
     /**
      * @ORM\Column(type="float")
      */
-    private $price;
+    private $percent;
     
     /**
-     * @ORM\ManyToOne(targetEntity="EshopBundle\Entity\Category", inversedBy="products")
-     * @ORM\JoinColumn(name="category_id", nullable=true, referencedColumnName="id")
+     * @ORM\Column(type="string", length=32)
      */
-    private $category;
+    private $code;
     
     /**
      * @ORM\Column(type="boolean", options={"default": true})
      */
-    private $active;
-    
+    private $applied;
+           
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="date")
+     * @ORM\JoinColumn(nullable=true,referencedColumnName="id")
      */
-    private $stock;
-
+    private $validityto;
+    
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId() 
     {
         return $this->id;
     }
-    
-    /**
+
+     /**
      * @param mixed $id
-     * @return Product
+     * @return Discount
      */
     public function setId($id)
     {
         $this->id = $id;
         return $this;
     }
-    
+
     /**
      * @return mixed
      */
@@ -84,35 +81,17 @@ class Product {
     {
         return $this->name;
     }
-    
-    /**
+
+     /**
      * @param mixed $name
-     * @return Product
+     * @return Discount
      */
     public function setName($name)
     {
         $this->name = $name;
         return $this;
     }
-    
-    /**
-     * @return mixed
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-    
-    /**
-     * @param mixed $url
-     * @return Product
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-        return $this;
-    }
-    
+
     /**
      * @return mixed
      */
@@ -120,86 +99,86 @@ class Product {
     {
         return $this->description;
     }
-    
-    /**
+
+     /**
      * @param mixed $description
-     * @return Product
+     * @return Discount
      */
-    public function setDescription($description)
+    public function setDescription($description) 
     {
         $this->description = $description;
         return $this;
     }
-    
+
     /**
      * @return mixed
      */
-    public function getPrice()
+    public function getPercent() 
     {
-        return $this->price;
+        return $this->percent;
     }
-    
-    /**
-     * @param mixed $price
-     * @return Product
+
+     /**
+     * @param mixed $percent
+     * @return Discount
      */
-    public function setPrice($price)
+    public function setPercent($percent) 
     {
-        $this->price = $price;
+        $this->percent = $percent;
         return $this;
     }
-    
+
     /**
      * @return mixed
      */
-    public function getCategory()
+    public function getCode()
     {
-        return $this->category;
+        return $this->code;
     }
-    
-    /**
-     * @param mixed $category
-     * @return Product
+
+     /**
+     * @param mixed $code
+     * @return Discount
      */
-    public function setCategory($category)
+    public function setCode($code) 
     {
-        $this->category = $category;
+        $this->code = $code;
         return $this;
     }
-    
+
     /**
      * @return mixed
      */
-    public function getActive()
+    public function getApplied()
     {
-        return $this->active;
+        return $this->applied;
     }
-    
-    /**
-     * @param mixed $active
-     * @return Product
+
+     /**
+     * @param mixed $applied
+     * @return Discount
      */
-    public function setActive($active)
+    public function setApplied($applied) 
     {
-        $this->active = $active;
+        $this->applied = $applied;
         return $this;
     }
-    
+
     /**
      * @return mixed
      */
-    public function getStock()
+    public function getValidityto()
     {
-        return $this->stock;
+        return $this->validityto;
     }
-    
-    /**
-     * @param mixed $stock
-     * @return Product
+
+     /**
+     * @param mixed $validityto
+     * @return Discount
      */
-    public function setStock($stock)
+    public function setValidityto($validityto)
     {
-        $this->stock = $stock;
+        $this->validityto = $validityto;
         return $this;
     }
 
